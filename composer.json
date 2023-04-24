@@ -44,10 +44,10 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Bamalik1996\\TapPaymentGatewayLaravel\\TapPaymentGatewayLaravelServiceProvider"
+        "Bamalik1996\\TapPaymentGateway\\TapPaymentGatewayServiceProvider"
       ],
       "aliases": {
-        "TapPaymentGatewayLaravel": "Bamalik1996\\TapPaymentGatewayLaravel\\TapPaymentGatewayLaravelFacade"
+        "TapPaymentGateway": "Bamalik1996\\TapPaymentGateway\\TapPaymentGatewayFacade"
       }
     }
   }
