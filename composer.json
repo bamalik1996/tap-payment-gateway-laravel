@@ -26,12 +26,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Bamalik1996\\TapPaymentGatewayLaravel\\": "src"
+      "Bamalik1996\\TapPaymentGateway\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Bamalik1996\\TapPaymentGatewayLaravel\\Tests\\": "tests"
+      "Bamalik1996\\TapPaymentGateway\\Tests\\": "tests"
     }
   },
   "scripts": {
