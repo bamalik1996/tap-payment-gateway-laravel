@@ -14,12 +14,6 @@ You can install the package via composer:
 composer require bamalik1996/tap-payment-gateway-laravel
 ```
 
-## Usage
-
-```php
-// Usage description here
-```
-
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
@@ -32,13 +26,16 @@ To run this project, you will need to add the following environment variables to
 
 `TAP_PAYMENT_SANDBOX_SECRET_KEY`
 
-`TAP_PAYMENT_SANDBOX_PUBLISH_KEY`
+`TAP_PAYMENT_SANDBOX_PUBLISH_KEY`## Documentation (Charge)
 
+- [Charge](https://developers.dev.tap.company/reference/charges-2)
 
-## Usage/Examples
+## Charge Create
+
 ```php
 use Bamalik1996\TapPaymentGateway\TapPaymentGateway;
 ```
+
 ```php
     $trans_object["amount"]                   =  123;
     $trans_object["currency"]                 = 'AED';
@@ -63,19 +60,171 @@ use Bamalik1996\TapPaymentGateway\TapPaymentGateway;
     $tapPaymentGateway = new TapPaymentGateway;
     return ($tapPaymentGateway->charges()->create($trans_object));
 ```
-## Contributing
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+## Charge Update
 
-### Security
+```php
+use Bamalik1996\TapPaymentGateway\TapPaymentGateway;
 
-If you discover any security related issues, please email bilalmalik531996@gmail.com instead of using the issue tracker.
+    $tapPaymentGateway = new TapPaymentGateway;
 
-## Credits
+    return $tapPaymentGateway->charges()->update($id,[
+        "description"=> "test",
+        "receipt"=> [
+            "email"=> false,
+            "sms"=> true
+        ],
+        "metadata"=> [
+            "udf2"=> "testing update"
+        ]
+    ]);
 
--   [BIlal Malik](https://github.com/bamalik1996)
--   [All Contributors](../../contributors)
+```
 
-## License
+## Charge Retrieve
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+```php
+use Bamalik1996\TapPaymentGateway\TapPaymentGateway;
+
+    $tapPaymentGateway = new TapPaymentGateway;
+
+    return $tapPaymentGateway->charges()->retrieve($id);
+
+```
+
+## Charge Delete
+
+```php
+use Bamalik1996\TapPaymentGateway\TapPaymentGateway;
+
+    $tapPaymentGateway = new TapPaymentGateway;
+
+    return $tapPaymentGateway->charges()->delete($id);
+```
+
+## Charge All
+
+```php
+use Bamalik1996\TapPaymentGateway\TapPaymentGateway;
+
+    $tapPaymentGateway = new TapPaymentGateway;
+
+    return $tapPaymentGateway->charges()->all([
+        "period"=> [
+            "date"=> [
+            "from"=> time() - (30 * 24 * 60 * 60),//last 30 days
+            "to"=> time()//today
+            ]
+        ],
+        "status"=> "",
+        "starting_after"=> "",
+        "limit"=> 25
+    ]);
+```
+
+## Documentation (Custom)
+
+- [Customer](https://developers.dev.tap.company/reference/customers)
+
+## Customer Create
+
+```php
+use Bamalik1996\TapPaymentGateway\TapPaymentGateway;
+```
+
+```php
+    $params = array (
+        'first_name' => 'test',
+        'middle_name' => 'test',
+        'last_name' => 'test',
+        'email' => 'test@test.com',
+        'phone' =>
+        array (
+            'country_code' => '965',
+            'number' => '51234567',
+        ),
+        'description' => 'test',
+        'metadata' =>
+        array (
+            'sample string 1' => 'string1',
+            'sample string 3' => 'string2',
+        ),
+        'currency' => 'KWD',
+    );
+
+    $tapPaymentGateway = new TapPaymentGateway;
+    return ($tapPaymentGateway->customers()->create($params));
+```
+
+## Customer Update
+
+```php
+use Bamalik1996\TapPaymentGateway\TapPaymentGateway;
+
+    $tapPaymentGateway = new TapPaymentGateway;
+
+    return $tapPaymentGateway->customers()->update($id,[
+      'first_name' => 'test',
+        'middle_name' => 'test',
+        'last_name' => 'test',
+        'email' => 'test@test.com',
+        'phone' =>
+        array (
+            'country_code' => '965',
+            'number' => '51234567',
+        ),
+        'description' => 'test',
+        'metadata' =>
+        array (
+            'sample string 1' => 'string1',
+            'sample string 3' => 'string2',
+        ),
+        'currency' => 'KWD',
+    ]);
+
+```
+
+## Customer Retrieve
+
+```php
+use Bamalik1996\TapPaymentGateway\TapPaymentGateway;
+
+    $tapPaymentGateway = new TapPaymentGateway;
+
+    return $tapPaymentGateway->customers()->retrieve($id);
+
+```
+
+## Customer Delete
+
+```php
+use Bamalik1996\TapPaymentGateway\TapPaymentGateway;
+
+    $tapPaymentGateway = new TapPaymentGateway;
+
+    return $tapPaymentGateway->customers()->delete($id);
+```
+
+## Customer All
+
+```php
+use Bamalik1996\TapPaymentGateway\TapPaymentGateway;
+
+    $tapPaymentGateway = new TapPaymentGateway;
+
+    return $tapPaymentGateway->customers()->all([
+        "period"=> [
+            "date"=> [
+            "from"=> time() - (30 * 24 * 60 * 60),//last 30 days
+            "to"=> time()//today
+            ]
+        ],
+        "status"=> "",
+        "starting_after"=> "",
+        "limit"=> 25
+    ]);
+```
+## More Help
+* [API Documentation](https://tap.company/developers)
+* [Charges](https://developers.dev.tap.company/reference/charges-2)
+* [Customers](https://developers.dev.tap.company/reference/customers)

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 
 trait  HttpRequest
 {
-    public static function request($url, $params)
+    public static function request($method, $url, $params = [])
     {
 
         if (!in_array(env('TAP_PAYMENT_MODE'), ['sandbox', 'production'])) {
@@ -22,9 +22,12 @@ trait  HttpRequest
             $publish_key = env('TAP_PAYMENT_SANDBOX_PUBLISH_KEY');
         }
 
-        return  Http::withHeaders([
+        $http =   Http::withHeaders([
             'authorization' => 'Bearer ' . $secret_key,
             "content-type" => "application/json"
-        ])->post($url, $params);
+        ]);
+
+
+        return $http->$method($url, $params);
     }
 }

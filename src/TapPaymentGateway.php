@@ -2,9 +2,7 @@
 
 namespace Bamalik1996\TapPaymentGateway;
 
-use Illuminate\Support\Facades\Http;
-
-class TapPaymentGateway extends Api
+class TapPaymentGateway
 {
     public function charges()
     {
@@ -15,7 +13,6 @@ class TapPaymentGateway extends Api
     {
         return new Refunds;
     }
-
 
     public function customers()
     {
